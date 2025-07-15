@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎂 Happy Birthday!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to top right, #ffccff, #ccffff);
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        animation: backgroundShift 10s ease-in-out infinite;
+        flex-direction: column;
+        text-align: center;
+      }
+      @keyframes backgroundShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      img.birthday-pic {
+        max-width: 300px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(255, 51, 153, 0.7);
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      .text {
+        font-size: 40px;
+        font-weight: bold;
+        color: #ff3399;
+        animation: bounce 1.5s infinite;
+        margin-bottom: 5px;
+      }
+      .subtext {
+        font-size: 20px;
+        color: #333;
+        animation: fadeIn 3s ease-in;
+        margin-bottom: 20px;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .cake {
+        position: relative;
+        width: 100px;
+        height: 120px;
+        background: #ff9999;
+        margin: 0 auto 20px auto;
+        border-radius: 10px;
+      }
+      .frosting {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 30px;
+        background: white;
+        border-radius: 10px 10px 0 0;
+      }
+      .candle {
+        position: absolute;
+        top: -40px;
+        left: 45px;
+        width: 10px;
+        height: 40px;
+        background: #3399ff;
+        border-radius: 2px;
+      }
+      .flame {
+        position: absolute;
+        top: -15px;
+        left: -5px;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, yellow, orange);
+        border-radius: 50%;
+        animation: flicker 0.3s infinite;
+      }
+      @keyframes flicker {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Button style */
+      #sound-btn {
+        background-color: #ff3399;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        user-select: none;
+      }
+      #sound-btn:hover {
+        background-color: #e62e8c;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Birthday picture -->
+    <img
+      class="birthday-pic"
+      src="photo_2025-07-15_22-14-10.jpg"
+      alt="Birthday Celebration"
+    />
+
+    <div class="cake">
+      <div class="frosting"></div>
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
+    </div>
+
+    <h1 class="text">🎉 Happy Birthday! 🎂</h1>
+    <p class="subtext">
+      Wishing you health, happiness, and success every day! 😄
+    </p>
+
+    <!-- Audio element -->
+    <audio id="birthday-audio" loop>
+      <source src="happy-birthday-254480.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Sound toggle button -->
+    <button id="sound-btn">🔊 Pause Music</button>
+
+    <script>
+      const audio = document.getElementById("birthday-audio");
+      const btn = document.getElementById("sound-btn");
+
+      // Start playing automatically when page loads
+      window.addEventListener("load", () => {
+        audio.play().catch(() => {
+          // Autoplay might be blocked, so button lets user start manually
+          btn.textContent = "🔈 Play Music";
+        });
+      });
+
+      btn.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          btn.textContent = "🔊 Pause Music";
+        } else {
+          audio.pause();
+          btn.textContent = "🔈 Play Music";
+        }
+      });
+    </script>
+  </body>
+</html>
